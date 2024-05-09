@@ -37,19 +37,6 @@ public class ControlePedidoModel {
     @Setter
     private LocalDateTime fimDaPreparacao;
 
-    public ControlePedidoModel(UUID pedidoId, StatusControlePedido statusControlePedido, LocalDateTime recebidoEm) {
-        this.pedidoId = pedidoId;
-        this.statusControlePedido = statusControlePedido;
-        this.recebidoEm = recebidoEm;
-    }
-
-    public ControlePedidoModel(UUID controlePedidoId, UUID pedidoId, StatusControlePedido statusControlePedido, LocalDateTime recebidoEm) {
-        this.controlePedidoId = controlePedidoId;
-        this.pedidoId = pedidoId;
-        this.statusControlePedido = statusControlePedido;
-        this.recebidoEm = recebidoEm;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
