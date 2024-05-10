@@ -14,7 +14,7 @@ public class ValidationTest {
 
     @Setter
     public static final class Dummy implements br.com.ismyburguer.core.validation.Validation {
-        @NotNull
+        @NotNull(message = "não deve ser nulo")
         private String notNull;
     };
 
