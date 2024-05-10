@@ -131,7 +131,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>report-aggregate</goal>
                         </goals>
