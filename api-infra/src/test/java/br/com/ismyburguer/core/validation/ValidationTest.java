@@ -1,19 +1,12 @@
 package br.com.ismyburguer.core.validation;
 
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.*;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.NotNull;
 import lombok.Setter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ValidationTest {
     private Dummy dummy;
