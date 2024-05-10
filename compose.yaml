@@ -1,0 +1,25 @@
+services:
+  is-my-burguer-controle-pedido:
+    container_name: is-my-burguer-controle-pedido
+    image: docker.io/ismaelgcosta/is-my-burguer-controle-pedido:is-my-burguer-controle-pedido-2.1.1
+    environment:
+      - SERVICE_DISCOVERY_USERNAME
+      - SERVICE_DISCOVERY_PASSWORD
+      - MONGODB_HOST
+      - MONGODB_PASSWORD
+      - MONGODB_USER
+      - CLIENT_DOMAIN
+      - AWS_REGION
+      - AWS_COGNITO_USER_POOL_ID
+    build:
+        dockerfile: Dockerfile
+    ports:
+      - '127.0.0.1:8543:8543'
+    restart: unless-stopped
+    networks:
+      - ismyburguer-backend
+
+networks:
+  ismyburguer-backend:
+    external: false
+    driver: bridge
