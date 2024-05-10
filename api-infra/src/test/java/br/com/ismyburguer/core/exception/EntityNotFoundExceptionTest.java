@@ -1,0 +1,15 @@
+package br.com.ismyburguer.core.exception;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class EntityNotFoundExceptionTest {
+
+    @Test
+    void deveRetornarMensagemCorreta() {
+        String mensagem = "Erro de negócio ocorreu.";
+        EntityNotFoundException exception = new EntityNotFoundException(mensagem);
+        assertEquals(mensagem, exception.getMessage());
+    }
+}

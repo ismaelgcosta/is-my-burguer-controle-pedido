@@ -31,7 +31,7 @@ public class PrepararControlePedidoAPI {
     public void prepararPedido(
             @PathVariable @Valid @UUID(message = "O código do pedido informado está num formato inválido") String pedidoId
     ) {
-        useCase.preparar(new ControlePedido.PedidoId(java.util.UUID.fromString(pedidoId)));
+        useCase.preparar(new ControlePedido.PedidoId(pedidoId));
     }
 
 }

@@ -6,6 +6,7 @@ import br.com.ismyburguer.core.validation.Validation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,10 @@ public class Pedido implements Validation {
 
     @Setter
     private BigDecimal total;
+
+    public Pedido(PedidoId pedidoId) {
+        this.pedidoId = pedidoId;
+    }
 
     @Getter
     public enum StatusPedido {
@@ -62,6 +67,7 @@ public class Pedido implements Validation {
 
     @Getter
     @AllArgsConstructor
+    @EqualsAndHashCode
     public static class PedidoId {
 
         @NotNull(message = "Informe o código do Pedido")
@@ -74,6 +80,7 @@ public class Pedido implements Validation {
 
     @Getter
     @AllArgsConstructor
+    @EqualsAndHashCode
     public static class ClienteId {
 
         @NotNull(message = "Informe o código do Cliente")
