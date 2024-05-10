@@ -5,10 +5,7 @@ import br.com.ismyburguer.core.exception.BusinessException;
 import br.com.ismyburguer.core.validation.Validation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -17,6 +14,7 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pedido implements Validation {
 
     @Valid
