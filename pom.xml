@@ -35,7 +35,7 @@
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/api-main-build/target/jacoco.exec</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/api-main-build/jacoco-aggregate/target/jacoco.exec</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.language>java</sonar.language>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
         <code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
@@ -133,7 +133,7 @@
                             <dataFileIncludes>
                                 <dataFileInclude>**/jacoco.exec</dataFileInclude>
                             </dataFileIncludes>
-                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/jacoco-aggregate</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -141,13 +141,6 @@
                         <phase>package</phase>
                         <goals>
                             <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-aggregate</id>
-                        <phase>post-site</phase>
-                        <goals>
-                            <goal>report-aggregate</goal>
                         </goals>
                     </execution>
                 </executions>
