@@ -96,7 +96,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -Dsonar.coverage.jacoco.xmlReportPaths=./api-main-build/target/site/jacoco-aggregate/jacoco.xml sonar:sonar -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ismaelgcosta_is-my-burguer-controle-pedido
+        run: mvn -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco-aggregate/jacoco.xml sonar:sonar -Pcoverage org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ismaelgcosta_is-my-burguer-controle-pedido
 
 #  docker-build:
 #    name: 'Docker Build'
