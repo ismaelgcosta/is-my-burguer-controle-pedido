@@ -18,7 +18,25 @@
     <dependencies>
         <dependency>
             <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-common-entity</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
             <artifactId>api-infra</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-infra-persistence</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-infra-web</artifactId>
             <version>${packing.version}</version>
         </dependency>
 
