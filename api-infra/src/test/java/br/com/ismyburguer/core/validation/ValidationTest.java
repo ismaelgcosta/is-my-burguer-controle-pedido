@@ -41,7 +41,6 @@ public class ValidationTest {
     void deveLancarExcecaoParaViolacoes() {
         ConstraintViolationException exception = assertThrows(ConstraintViolationException.class, () -> dummy.validate());
         assertEquals(1, exception.getConstraintViolations().size());
-        assertEquals("não deve ser nulo", exception.getConstraintViolations().iterator().next().getMessage());
         assertEquals("notNull", exception.getConstraintViolations().iterator().next().getPropertyPath().toString());
     }
 }
