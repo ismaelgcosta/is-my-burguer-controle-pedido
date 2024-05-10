@@ -124,6 +124,13 @@
                         </goals>
                     </execution>
                     <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
                         <phase>verify</phase>
                         <goals>
                             <goal>report-aggregate</goal>
@@ -131,13 +138,6 @@
                         <configuration>
                             <includeCurrentProject>true</includeCurrentProject>
                         </configuration>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
