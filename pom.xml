@@ -39,6 +39,8 @@
 
         <sonar.organization>ismaelgcosta</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../erp-main-build/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencyManagement>
@@ -126,12 +128,6 @@
                         <goals>
                             <goal>report-aggregate</goal>
                         </goals>
-                        <configuration>
-                            <dataFileIncludes>
-                                <dataFileInclude>**/jacoco.exec</dataFileInclude>
-                                <dataFileInclude>**/jacoco.xml</dataFileInclude>
-                            </dataFileIncludes>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
@@ -139,11 +135,6 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <formats>
-                                <format>XML</format>
-                            </formats>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -152,24 +143,5 @@
 
 
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report</report>
-                            <report>xml</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
-
 
 </project>
