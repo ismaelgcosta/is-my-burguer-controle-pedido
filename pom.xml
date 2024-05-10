@@ -35,6 +35,7 @@
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/api-main-build/target/jacoco.exec</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.language>java</sonar.language>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
         <code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
