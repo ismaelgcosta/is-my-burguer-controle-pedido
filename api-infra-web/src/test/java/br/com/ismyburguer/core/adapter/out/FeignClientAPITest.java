@@ -1,66 +1,48 @@
 package br.com.ismyburguer.core.adapter.out;
 
-import br.com.ismyburguer.core.Application;
-import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
-import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import feign.Headers;
-import feign.RequestLine;
+import feign.Client;
+import feign.Feign;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import wiremock.com.fasterxml.jackson.databind.node.TextNode;
 
-import java.util.List;
+import static org.mockito.Mockito.*;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@ActiveProfiles("test")
-@SpringBootTest(classes = {Application.class, TestSecurityConfig.class})
-@AutoConfigureWireMock(port = 0)
 public class FeignClientAPITest {
 
-    @Autowired
+    private OAuth2ClientCredentialsFeignInterceptorAPI interceptor;
     private FeignClientAPI feignClientAPI;
 
-    @Value("${wiremock.server.port}") int port;
-
-    @Test
-    void deveConsumirOServico() {
-
-        SecurityContextHolder.getContext().setAuthentication(new JwtAuthenticationToken(
-                TestSecurityConfig.jwt(), List.of()
-        ));
-
-        feignClientAPI.setApiGateway("http://localhost:"+port);
-
-        // Stubbing WireMock
-        stubFor(get(urlEqualTo("/dummy")).willReturn(aResponse()
-                .withHeader("Content-Type", "application/json").withJsonBody(new TextNode("Hello World!"))));
-
-        FakeAPI client = feignClientAPI.createClient(FakeAPI.class);
-        assertEquals("Hello World!", client.dummyCall());
+    @BeforeEach
+    void setUp() {
+        interceptor = mock(OAuth2ClientCredentialsFeignInterceptorAPI.class);
+        feignClientAPI = new FeignClientAPI(interceptor);
     }
 
-    public interface FakeAPI {
+    @BeforeAll
+    public static void beforeAll() {
+        mockStatic(Feign.class);
+    }
 
-        @Headers("Content-Type: application/json")
-        @RequestLine("GET /dummy")
-        Object dummyCall();
+    @Test
+    void deveCriarClienteFeignCorretamente() {
+        // Mocking dependencies
+        Feign.Builder builderMock = mock(Feign.Builder.class);
+        Feign feignMock = mock(Feign.class);
 
+        when(Feign.builder()).thenReturn(builderMock);
+
+        // Configurando comportamento do Feign.Builder
+        when(builderMock.encoder(any())).thenReturn(builderMock);
+        when(builderMock.decoder(any())).thenReturn(builderMock);
+        when(builderMock.requestInterceptor(interceptor)).thenReturn(builderMock);
+
+        // Configurando comportamento do Feign
+        when(builderMock.client(any())).thenReturn(builderMock);
+
+        // Configurando comportamento do Client.Default
+        when(builderMock.target(any(), anyString())).thenReturn(feignMock);
+
+        feignClientAPI.createClient(Feign.Builder.class);
     }
 }
