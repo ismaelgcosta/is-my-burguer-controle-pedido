@@ -1,10 +1,18 @@
 package br.com.ismyburguer.core.adapter.out;
 
 import br.com.ismyburguer.core.Application;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import feign.Headers;
 import feign.RequestLine;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
@@ -18,21 +26,28 @@ import wiremock.com.fasterxml.jackson.databind.node.TextNode;
 import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {Application.class, TestSecurityConfig.class})
+@SpringBootTest(classes = {Application.class, TestSecurityConfig.class})
 @AutoConfigureWireMock(port = 0)
 public class FeignClientAPITest {
 
     @Autowired
     private FeignClientAPI feignClientAPI;
 
+    @Value("${wiremock.server.port}") int port;
+
     @Test
     void deveConsumirOServico() {
+
         SecurityContextHolder.getContext().setAuthentication(new JwtAuthenticationToken(
                 TestSecurityConfig.jwt(), List.of()
         ));
+
+        feignClientAPI.setApiGateway("http://localhost:"+port);
+
         // Stubbing WireMock
         stubFor(get(urlEqualTo("/dummy")).willReturn(aResponse()
                 .withHeader("Content-Type", "application/json").withJsonBody(new TextNode("Hello World!"))));
