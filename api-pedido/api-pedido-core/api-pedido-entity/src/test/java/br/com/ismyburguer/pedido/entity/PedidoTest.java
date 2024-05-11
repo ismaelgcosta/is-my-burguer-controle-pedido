@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class PedidoTest {
 
     @Test
@@ -21,11 +23,18 @@ class PedidoTest {
                 Warning.BIGDECIMAL_EQUALITY,
                 Warning.NONFINAL_FIELDS).verify();
 
-        new Pedido(
-                new Pedido.PedidoId(UUID.randomUUID()),
-                null,
+        Pedido.PedidoId pedidoId = new Pedido.PedidoId(UUID.randomUUID().toString());
+
+        Pedido.ClienteId clienteId = new Pedido.ClienteId(UUID.randomUUID().toString());
+        Pedido pedido = new Pedido(
+                pedidoId,
+                clienteId,
                 Pedido.StatusPedido.FECHADO,
                 BigDecimal.ONE);
+        assertEquals(clienteId, pedido.getClienteId().get());
+
+        pedido = new Pedido(pedidoId);
+        assertEquals(pedidoId, pedido.getPedidoId().get());
     }
 
 }

@@ -19,7 +19,6 @@ public class Pedido implements Validation {
     private PedidoId pedidoId;
 
     @Valid
-    @Setter
     private ClienteId clienteId;
 
     @Getter
@@ -51,14 +50,6 @@ public class Pedido implements Validation {
             this.descricao = descricao;
         }
 
-        public String getDescricao() {
-            return descricao;
-        }
-
-        @Override
-        public String toString() {
-            return descricao;
-        }
     }
 
     @Getter
