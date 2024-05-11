@@ -1,9 +1,13 @@
 package br.com.ismyburguer.core;
 
+import br.com.ismyburguer.core.adapter.out.TestSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
+@Import(TestSecurityConfig.class)
 public class Application {
 
     public static void main(String[] args) {

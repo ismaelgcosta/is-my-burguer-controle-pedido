@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 @DataMongoTest
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {Application.class, TestSecurityConfig.class})
-//@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class, MongoRepositoriesAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class SpringContextTest {
 
     @Test
