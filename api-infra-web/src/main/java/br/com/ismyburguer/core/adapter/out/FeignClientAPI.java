@@ -47,7 +47,7 @@ public class FeignClientAPI {
                     .client(client)
                     .target(apiType, apiGateway);
         } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 

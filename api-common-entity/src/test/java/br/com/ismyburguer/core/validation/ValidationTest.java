@@ -5,10 +5,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Setter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class ValidationTest {
-    private Dummy dummy;
+class ValidationTest {
+    private Validation dummy;
 
     // Criando uma classe anônima simulada que implementa a interface Validation
 
@@ -20,12 +21,16 @@ public class ValidationTest {
 
     @BeforeEach
     void setUp() {
-        dummy = new Dummy();
+        dummy = new Validation(){
+            @NotNull(message = "não deve ser nulo")
+            String notNull;
+
+        };
     }
 
     @Test
     void deveValidarSemViolacoes() {
-        dummy.setNotNull("a");
+        ReflectionTestUtils.setField(dummy, "notNull", "a");
         assertDoesNotThrow(() -> dummy.validate());
     }
 

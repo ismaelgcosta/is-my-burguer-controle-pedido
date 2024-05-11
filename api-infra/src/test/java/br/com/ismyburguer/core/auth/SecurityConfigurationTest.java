@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtDecoders;
@@ -16,8 +19,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class SecurityConfigurationTest {
@@ -28,6 +30,10 @@ public class SecurityConfigurationTest {
 
     @InjectMocks
     private SecurityConfiguration securityConfiguration;
+
+    @Mock
+    private HttpSecurity httpSecurity;
+
 
     private String issuerUri;
 
@@ -42,6 +48,25 @@ public class SecurityConfigurationTest {
     @BeforeAll
     public static void init() {
         mockStatic(JwtDecoders.class);
+    }
+
+    @Test
+    public void deveConfigurarFiltroDeSeguranca() throws Exception {
+        // Arrange
+        JwtDecoder jwtDecoder = new TestSecurityConfig().jwtDecoder();
+
+        when(httpSecurity.csrf(any())).thenReturn(httpSecurity);
+        when(httpSecurity.authorizeHttpRequests(any())).thenReturn(httpSecurity);
+        when(httpSecurity.oauth2ResourceServer(any())).thenReturn(httpSecurity);
+
+        // Act
+        securityConfiguration.filterChain(httpSecurity, jwtDecoder);
+
+        // Assert
+        verify(httpSecurity).csrf(any());
+        verify(httpSecurity).authorizeHttpRequests(any());
+        verify(httpSecurity).oauth2ResourceServer(any());
+        verify(httpSecurity).authenticationProvider(any());
     }
 
     @Test
