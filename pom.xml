@@ -40,7 +40,9 @@
         <sonar.organization>ismaelgcosta</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../erp-main-build/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <itCoverageAgent></itCoverageAgent>
+        <unitCoverageAgent></unitCoverageAgent>
     </properties>
 
     <dependencyManagement>
@@ -108,6 +110,9 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <propertyName>unitCoverageAgent</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-initialize-it</id>
@@ -115,6 +120,9 @@
                         <goals>
                             <goal>prepare-agent-integration</goal>
                         </goals>
+                        <configuration>
+                            <propertyName>itCoverageAgent</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
@@ -138,13 +146,38 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*Test.java</include>
+                            </includes>
+                            <reuseForks>true</reuseForks>
+                            <!-- When running as a Maven plugin, the JaCoCo agent configuration is prepared by invoking the prepare-agent
+                            or prepare-agent-integration goals, before the actual tests are run. This sets a property named argLine which
+                            points to the JaCoCo agent, later passed as a JVM argument to the test runner -->
+                            <argLine>${itCoverageAgent}</argLine>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
                         <AWS_REGION>us-east-1</AWS_REGION>
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
-                        <argLine>--spring.profiles.active=test</argLine>
+                        <argLine>${unitCoverageAgent} --spring.profiles.active=test</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>

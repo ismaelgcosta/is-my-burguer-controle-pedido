@@ -5,8 +5,6 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DataMongoTest
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {Application.class, TestSecurityConfig.class})
