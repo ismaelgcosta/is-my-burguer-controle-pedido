@@ -1,8 +1,6 @@
 logging.level.org.springframework.web: DEBUG
 logging.level.org.hibernate: ERROR
 
-
-
 feign:
   httpclient:
     disableSslValidation: true

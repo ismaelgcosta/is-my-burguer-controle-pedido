@@ -1,6 +1,7 @@
 package br.com.ismyburguer;
 
 import com.netflix.discovery.shared.transport.EurekaHttpClient;
+import lombok.Setter;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
@@ -33,6 +34,7 @@ import java.security.NoSuchAlgorithmException;
 public class RestTemplateConfig {
 
     @Value("eureka.client.serviceUrl.defaultZone")
+    @Setter
     private String serviceUrl;
 
     @Bean
