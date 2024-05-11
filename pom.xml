@@ -33,7 +33,6 @@
         <!-- JaCoCo Properties -->
         <jacoco.version>0.8.12</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
         <sonar.language>java</sonar.language>
 
@@ -146,38 +145,13 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven-failsafe-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>integration-tests</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/*Test.java</include>
-                            </includes>
-                            <reuseForks>true</reuseForks>
-                            <!-- When running as a Maven plugin, the JaCoCo agent configuration is prepared by invoking the prepare-agent
-                            or prepare-agent-integration goals, before the actual tests are run. This sets a property named argLine which
-                            points to the JaCoCo agent, later passed as a JVM argument to the test runner -->
-                            <argLine>${itCoverageAgent}</argLine>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
                         <AWS_REGION>us-east-1</AWS_REGION>
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
-                        <argLine>${unitCoverageAgent} ${itCoverageAgent} --spring.profiles.active=test</argLine>
+                        <argLine>--spring.profiles.active=test</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>

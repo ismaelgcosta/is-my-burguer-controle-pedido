@@ -135,7 +135,7 @@
                         <AWS_REGION>us-east-1</AWS_REGION>
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
-                        <argLine>${unitCoverageAgent} ${itCoverageAgent} --spring.profiles.active=test</argLine>
+                        <argLine>--spring.profiles.active=test</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>
