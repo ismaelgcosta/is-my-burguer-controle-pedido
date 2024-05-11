@@ -40,8 +40,6 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../erp-main-build/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <itCoverageAgent></itCoverageAgent>
-        <unitCoverageAgent></unitCoverageAgent>
     </properties>
 
     <dependencyManagement>
@@ -109,9 +107,6 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
-                        <configuration>
-                            <propertyName>unitCoverageAgent</propertyName>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-initialize-it</id>
@@ -119,9 +114,6 @@
                         <goals>
                             <goal>prepare-agent-integration</goal>
                         </goals>
-                        <configuration>
-                            <propertyName>itCoverageAgent</propertyName>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
