@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 public class FeignClientAPITest {
-
     private OAuth2ClientCredentialsFeignInterceptorAPI interceptor;
     private FeignClientAPI feignClientAPI;
 

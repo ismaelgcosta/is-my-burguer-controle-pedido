@@ -4,7 +4,6 @@ import feign.Client;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
-import lombok.Setter;
 import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
 import org.apache.hc.client5.http.ssl.TrustAllStrategy;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
@@ -19,7 +18,6 @@ import java.security.NoSuchAlgorithmException;
 @Component
 public class FeignClientAPI {
 
-    @Setter
     @Value("${aws.api-gateway}")
     protected String apiGateway;
 
