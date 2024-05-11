@@ -72,4 +72,22 @@
 
     </dependencies>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <environmentVariables>
+                        <AWS_REGION>us-east-1</AWS_REGION>
+                        <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
+                        <MONGODB_HOST>localhost</MONGODB_HOST>
+                        <argLine>--spring.profiles.active=test</argLine>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
