@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Pedido implements Validation {
 

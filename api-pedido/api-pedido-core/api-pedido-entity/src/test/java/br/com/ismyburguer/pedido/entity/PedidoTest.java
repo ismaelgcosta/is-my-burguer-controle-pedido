@@ -5,6 +5,9 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 class PedidoTest {
 
     @Test
@@ -17,6 +20,12 @@ class PedidoTest {
                 Warning.ALL_FIELDS_SHOULD_BE_USED,
                 Warning.BIGDECIMAL_EQUALITY,
                 Warning.NONFINAL_FIELDS).verify();
+
+        new Pedido(
+                new Pedido.PedidoId(UUID.randomUUID()),
+                null,
+                Pedido.StatusPedido.FECHADO,
+                BigDecimal.ONE);
     }
 
 }
