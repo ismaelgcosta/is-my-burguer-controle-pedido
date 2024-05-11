@@ -1,19 +1,16 @@
 package br.com.ismyburguer.pedido.entity;
 
 
-import br.com.ismyburguer.core.exception.BusinessException;
 import br.com.ismyburguer.core.validation.Validation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.Optional;
 import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Pedido implements Validation {
 
@@ -64,7 +61,6 @@ public class Pedido implements Validation {
     }
 
     @Getter
-    @AllArgsConstructor
     @EqualsAndHashCode
     public static class PedidoId {
 
@@ -77,7 +73,6 @@ public class Pedido implements Validation {
     }
 
     @Getter
-    @AllArgsConstructor
     @EqualsAndHashCode
     public static class ClienteId {
 
