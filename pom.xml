@@ -153,7 +153,7 @@
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
                         <argLine>--spring.profiles.active=test</argLine>
-                        <argLine>${surefireArgLine}</argLine>
+                        <argLine>@{surefireArgLine}</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>
