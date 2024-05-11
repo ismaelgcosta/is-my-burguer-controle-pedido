@@ -1,23 +1,15 @@
 package br.com.ismyburguer;
+
 import com.netflix.discovery.shared.transport.EurekaHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.junit.jupiter.api.Test;
-import org.springframework.cloud.configuration.SSLContextFactory;
 import org.springframework.cloud.configuration.TlsProperties;
 import org.springframework.cloud.netflix.eureka.http.EurekaClientHttpRequestFactorySupplier;
 import org.springframework.cloud.netflix.eureka.http.RestTemplateDiscoveryClientOptionalArgs;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.SSLContext;
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -45,7 +37,7 @@ public class RestTemplateConfigTest {
     public void deveCriarEurekaHttpClientComSucesso() {
         // Arrange
         RestTemplateConfig restTemplateConfig = new RestTemplateConfig();
-        restTemplateConfig.setServiceUrl("eureka.client.serviceUrl.defaultZone");
+        restTemplateConfig.setServiceUrl("value");
 
         // Act
         EurekaHttpClient eurekaHttpClient = null;
@@ -63,7 +55,7 @@ public class RestTemplateConfigTest {
     public void deveCriarRestTemplateDiscoveryClientOptionalArgsComSucesso() {
         // Arrange
         RestTemplateConfig restTemplateConfig = new RestTemplateConfig();
-        restTemplateConfig.setServiceUrl("eureka.client.serviceUrl.defaultZone");
+        restTemplateConfig.setServiceUrl("value");
 
         TlsProperties tlsProperties = mock(TlsProperties.class);
         when(tlsProperties.getKeyStore()).thenReturn(new ClassPathResource("springboot.p12"));

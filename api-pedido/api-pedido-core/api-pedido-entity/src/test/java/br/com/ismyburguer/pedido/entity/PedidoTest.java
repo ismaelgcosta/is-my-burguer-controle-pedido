@@ -35,6 +35,10 @@ class PedidoTest {
 
         pedido = new Pedido(pedidoId);
         assertEquals(pedidoId, pedido.getPedidoId().get());
+
+        pedidoId = new Pedido.PedidoId(UUID.randomUUID());
+        pedido = new Pedido(pedidoId);
+        assertEquals(pedidoId, pedido.getPedidoId().get());
     }
 
 }
