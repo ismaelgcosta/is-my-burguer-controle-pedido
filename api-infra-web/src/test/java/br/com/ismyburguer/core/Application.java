@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import(TestSecurityConfig.class)
 public class Application {
 
     public static void main(String[] args) {
