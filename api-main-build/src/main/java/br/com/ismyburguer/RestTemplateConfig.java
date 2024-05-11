@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 @Profile(value = {"dev", "production"})
 public class RestTemplateConfig {
 
+
     @Value("eureka.client.serviceUrl.defaultZone")
     @Setter
     private String serviceUrl;
