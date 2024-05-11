@@ -43,6 +43,7 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ${project.basedir}/../erp-main-build/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+        <surefireArgLine></surefireArgLine>
     </properties>
 
     <dependencyManagement>
@@ -152,8 +153,7 @@
                         <AWS_REGION>us-east-1</AWS_REGION>
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
-                        <argLine>--spring.profiles.active=test</argLine>
-                        <argLine>@{surefireArgLine}</argLine>
+                        <argLine>@{argLine} ${surefireArgLine} --spring.profiles.active=test</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>
