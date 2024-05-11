@@ -1,6 +1,5 @@
 package br.com.ismyburguer.core.adapter.out;
 
-import feign.Client;
 import feign.Feign;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class FeignClientAPITest {
+public class FeignClientAPIUnitTest {
     private OAuth2ClientCredentialsFeignInterceptorAPI interceptor;
     private FeignClientAPI feignClientAPI;
 
