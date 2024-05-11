@@ -40,10 +40,7 @@
         <sonar.organization>ismaelgcosta</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-        <sonar.coverage.jacoco.xmlReportPaths>
-            ${project.basedir}/../erp-main-build/target/site/jacoco-aggregate/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
-        <surefireArgLine></surefireArgLine>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencyManagement>
@@ -111,9 +108,6 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
-                        <configuration>
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-initialize-it</id>
@@ -121,9 +115,6 @@
                         <goals>
                             <goal>prepare-agent-integration</goal>
                         </goals>
-                        <configuration>
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
@@ -153,7 +144,7 @@
                         <AWS_REGION>us-east-1</AWS_REGION>
                         <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
                         <MONGODB_HOST>localhost</MONGODB_HOST>
-                        <argLine>@{argLine} ${surefireArgLine} --spring.profiles.active=test</argLine>
+                        <argLine>--spring.profiles.active=test</argLine>
                     </environmentVariables>
                 </configuration>
             </plugin>
