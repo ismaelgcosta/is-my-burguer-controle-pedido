@@ -6,6 +6,7 @@ Projeto para aplicação de conhecimentos da Fase 4 da Pós-Graduação em SOFTW
 
 ![alt text](/docs/is-my-burguer-api.drawio.png)
 
+
 # Requisitos necessários para compilar o projeto
 
 Ter o docker instalado na sua máquina:
