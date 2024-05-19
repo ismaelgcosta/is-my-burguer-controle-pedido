@@ -61,9 +61,6 @@ server:
 aws:
   api-gateway: http://localhost:8080
   region: us-beast-1
-  cognito:
-    domain: domain
-    user-pool-id: userPool
 
 spring:
   application:

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>br.com.ismyburguer</groupId>
+        <artifactId>api-controle-pedidos</artifactId>
+        <version>1.4.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>api-main-build</artifactId>
+
+    <properties>
+        <packing.version>1.4.0-SNAPSHOT</packing.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-common-entity</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-infra</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-infra-persistence</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-infra-web</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-controle-pedido-repository</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-controle-pedido-web</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-controle-pedido-use-case</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-pedido-client</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.ismyburguer</groupId>
+            <artifactId>api-pedido-use-case</artifactId>
+            <version>${packing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.33</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-contract-wiremock -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-contract-wiremock</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <addResources>true</addResources>
+                    <jvmArguments>
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5010
+                    </jvmArguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <environmentVariables>
+                        <AWS_REGION>us-east-1</AWS_REGION>
+                        <AWS_COGNITO_USER_POOL_ID>abc</AWS_COGNITO_USER_POOL_ID>
+                        <MONGODB_HOST>localhost</MONGODB_HOST>
+                        <argLine>--spring.profiles.active=test</argLine>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <finalName>is-my-burguer-controle-pedido</finalName>
+    </build>
+
+</project>
