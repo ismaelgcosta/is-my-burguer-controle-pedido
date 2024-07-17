@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -44,6 +45,13 @@ public class ControlePedido implements Validation {
         statusControlePedido = proximo;
         fimDaPreparacao = LocalDateTime.now();
     }
+    public void cancelado() {
+        StatusControlePedido proximo = StatusControlePedido.CANCELADO;
+        statusControlePedido.validarProximoStatus(proximo);
+        statusControlePedido = proximo;
+        fimDaPreparacao = LocalDateTime.now();
+    }
+
     public void retirado() {
         statusControlePedido = StatusControlePedido.RETIRADO;
     }
@@ -52,6 +60,7 @@ public class ControlePedido implements Validation {
     public enum StatusControlePedido {
 
         RECEBIDO("Recebido"),
+        CANCELADO("Cancelado"),
         EM_PREPARACAO("Em Preparação"),
         PRONTO("Pronto"),
         RETIRADO("Retirado");
@@ -75,6 +84,10 @@ public class ControlePedido implements Validation {
             String message = "O Pedido precisa estar com o Status " + getDescricao() + " para poder ser alterado para " + statusPedido.getDescricao();
 
             if(statusPedido == EM_PREPARACAO && this != RECEBIDO) {
+                throw new BusinessException(message);
+            }
+
+            if(statusPedido == CANCELADO && this != RECEBIDO) {
                 throw new BusinessException(message);
             }
 

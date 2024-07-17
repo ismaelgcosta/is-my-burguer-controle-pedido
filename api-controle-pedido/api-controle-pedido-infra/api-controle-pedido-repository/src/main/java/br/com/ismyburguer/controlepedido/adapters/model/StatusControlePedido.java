@@ -8,6 +8,7 @@ public enum StatusControlePedido {
     RECEBIDO("Recebido"),
     EM_PREPARACAO("Em Preparação"),
     PRONTO("Pronto"),
+    CANCELADO("Cancelado"),
     RETIRADO("Retirado");
 
     private final String descricao;

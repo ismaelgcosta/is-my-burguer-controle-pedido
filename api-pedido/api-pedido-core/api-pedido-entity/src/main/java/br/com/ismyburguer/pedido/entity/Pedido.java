@@ -40,6 +40,7 @@ public class Pedido implements Validation {
         PAGO("Pago"),
         PAGAMENTO_NAO_AUTORIZADO("Pagamento Não Autorizado"),
         RECEBIDO("Recebido"),
+        CANCELADO("Recebido"),
         EM_PREPARACAO("Em Preparação"),
         PRONTO("Pronto"),
         FINALIZADO("Finalizado");
