@@ -1,5 +1,5 @@
 package br.com.ismyburguer.pedido.usecase.impl;
-import br.com.ismyburguer.pedido.adapter.interfaces.in.AlterarStatusPedidoUseCase;
+
 import br.com.ismyburguer.pedido.entity.Pedido;
 import br.com.ismyburguer.pedido.gateway.out.AlterarStatusPedidoAPI;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class AlterarStatusPedidoUseCaseImplTest {

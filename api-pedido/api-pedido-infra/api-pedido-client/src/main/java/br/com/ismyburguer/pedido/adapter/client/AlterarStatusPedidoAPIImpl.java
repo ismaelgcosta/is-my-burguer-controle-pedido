@@ -1,15 +1,12 @@
 package br.com.ismyburguer.pedido.adapter.client;
 
 import br.com.ismyburguer.core.adapter.in.WebAdapter;
-import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
-import br.com.ismyburguer.core.exception.EntityNotFoundException;
 import br.com.ismyburguer.pedido.adapter.request.PedidoRequest;
 import br.com.ismyburguer.pedido.adapter.request.StatusPedidoRequest;
 import br.com.ismyburguer.pedido.entity.Pedido;
 import br.com.ismyburguer.pedido.gateway.out.AlterarStatusPedidoAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import feign.FeignException;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;

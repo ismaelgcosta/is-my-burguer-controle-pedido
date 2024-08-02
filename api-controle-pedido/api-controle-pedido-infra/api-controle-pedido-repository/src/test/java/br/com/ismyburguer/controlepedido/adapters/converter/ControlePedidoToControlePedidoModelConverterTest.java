@@ -1,8 +1,7 @@
 package br.com.ismyburguer.controlepedido.adapters.converter;
+
 import br.com.ismyburguer.controlepedido.adapters.model.ControlePedidoModel;
-import br.com.ismyburguer.controlepedido.adapters.model.StatusControlePedido;
 import br.com.ismyburguer.controlepedido.entity.ControlePedido;
-import br.com.ismyburguer.core.adapter.Converter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
