@@ -3,6 +3,7 @@ package br.com.ismyburguer.controlepedido.usecase.impl.impl;
 import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.controlepedido.gateway.out.ConsultarControlePedidoRepository;
 import br.com.ismyburguer.core.exception.BusinessException;
+import br.com.ismyburguer.core.exception.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -49,7 +50,7 @@ public class ConsultarControlePedidoUseCaseImplTest {
         when(repository.consultar(pedidoId.getPedidoId())).thenReturn(Optional.empty());
 
         // Verificação
-        BusinessException exception = assertThrows(BusinessException.class, () -> useCase.consultar(pedidoId));
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> useCase.consultar(pedidoId));
         assertEquals("O Pedido informado ainda não foi recebido", exception.getMessage());
     }
 }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ControlePedido implements Validation {
 
+    @Setter
     private ControlePedidoId controlePedidoId;
 
     @NotNull(message = "Informe o código do Pedido")
