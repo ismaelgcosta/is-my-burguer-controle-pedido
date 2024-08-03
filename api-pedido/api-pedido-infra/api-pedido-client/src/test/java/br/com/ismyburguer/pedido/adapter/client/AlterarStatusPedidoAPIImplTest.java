@@ -113,4 +113,34 @@ public class AlterarStatusPedidoAPIImplTest {
 
         assertEquals("Erro ao alterar status do pedido", thrown.getMessage());
     }
+
+    @Test
+    void alterar_ShouldThrowException_Success() throws JsonProcessingException {
+        // Arrange
+        Pedido.PedidoId pedidoId = new Pedido.PedidoId(UUID.randomUUID());
+        Pedido.StatusPedido statusPedido = Pedido.StatusPedido.RECEBIDO;
+
+        ObjectWriter writer = mock(ObjectWriter.class);
+        lenient().when(objectMapper.writer()).thenReturn(writer);
+        lenient().when(writer.withDefaultPrettyPrinter()).thenReturn(writer);
+        lenient().when(writer.writeValueAsString(any())).thenReturn("json-string");
+
+        alterarStatusPedidoAPI.setPedidoQueue("test-queue-url");
+
+        // Act
+        alterarStatusPedidoAPI.alterar(pedidoId, statusPedido);
+
+        // Assert
+        ArgumentCaptor<Consumer<SqsSendOptions<Object>>> captor = ArgumentCaptor.forClass(Consumer.class);
+        verify(sqsTemplate).send(captor.capture());
+
+        Consumer<SqsSendOptions<Object>> sqsSendOptionsConsumer = captor.getValue();
+        SqsSendOptions<Object> sqsSendOptions = mock(SqsSendOptions.class);
+        when(sqsSendOptions.queue("test-queue-url")).thenReturn(sqsSendOptions);
+
+        // Act & Assert
+        sqsSendOptionsConsumer.accept(sqsSendOptions);
+
+        verify(sqsSendOptions).queue("test-queue-url");
+    }
 }
