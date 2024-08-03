@@ -4,6 +4,7 @@ import br.com.ismyburguer.controlepedido.adapter.interfaces.in.ConsultarControle
 import br.com.ismyburguer.controlepedido.adapter.interfaces.in.GerarControlePedidoUseCase;
 import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.controlepedido.gateway.out.GerarControlePedidoRepository;
+import br.com.ismyburguer.core.exception.EntityNotFoundException;
 import br.com.ismyburguer.core.usecase.UseCase;
 import br.com.ismyburguer.pedido.adapter.interfaces.in.AlterarStatusPedidoUseCase;
 import br.com.ismyburguer.pedido.entity.Pedido;
@@ -29,13 +30,14 @@ public class GerarControlePedidoUseCaseImpl implements GerarControlePedidoUseCas
     @Override
     @Transactional
     public UUID receberPedido(@Valid ControlePedido.PedidoId pedidoId) {
-        ControlePedido consultar = consultarControlePedidoUseCase.consultar(pedidoId);
-        if(consultar != null) {
+        try {
+            ControlePedido consultar = consultarControlePedidoUseCase.consultar(pedidoId);
             return consultar.getControlePedidoId().map(ControlePedido.ControlePedidoId::getControlePedidoId).orElse(null);
+        } catch (EntityNotFoundException e) {
+            ControlePedido controlePedido = new ControlePedido(pedidoId);
+            controlePedido.validate();
+            alterarStatusPedidoUseCase.alterar(new Pedido.PedidoId(pedidoId.getPedidoId()), Pedido.StatusPedido.RECEBIDO);
+            return repository.gerar(controlePedido);
         }
-        ControlePedido controlePedido = new ControlePedido(pedidoId);
-        controlePedido.validate();
-        alterarStatusPedidoUseCase.alterar(new Pedido.PedidoId(pedidoId.getPedidoId()), Pedido.StatusPedido.RECEBIDO);
-        return repository.gerar(controlePedido);
     }
 }

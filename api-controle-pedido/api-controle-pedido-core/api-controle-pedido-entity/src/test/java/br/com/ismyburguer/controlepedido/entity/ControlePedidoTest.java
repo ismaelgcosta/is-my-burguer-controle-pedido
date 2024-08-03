@@ -1,8 +1,8 @@
 package br.com.ismyburguer.controlepedido.entity;
+
 import br.com.ismyburguer.core.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;

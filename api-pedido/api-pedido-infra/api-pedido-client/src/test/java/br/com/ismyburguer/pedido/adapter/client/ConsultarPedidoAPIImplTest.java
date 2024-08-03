@@ -1,16 +1,15 @@
 package br.com.ismyburguer.pedido.adapter.client;
+
 import br.com.ismyburguer.core.adapter.out.FeignClientAPI;
 import br.com.ismyburguer.core.exception.EntityNotFoundException;
 import br.com.ismyburguer.pedido.adapter.converter.PedidoResponseToPedidoConverter;
 import br.com.ismyburguer.pedido.adapter.response.PedidoResponse;
 import br.com.ismyburguer.pedido.entity.Pedido;
-import br.com.ismyburguer.pedido.gateway.out.ConsultarPedidoAPI;
 import feign.FeignException;
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 

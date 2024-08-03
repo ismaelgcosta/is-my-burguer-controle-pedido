@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ControlePedido implements Validation {
 
+    @Setter
     private ControlePedidoId controlePedidoId;
 
     @NotNull(message = "Informe o código do Pedido")

@@ -2,7 +2,6 @@ package br.com.ismyburguer.pedido.web.api.controller;
 
 
 import br.com.ismyburguer.controlepedido.adapter.interfaces.in.GerarControlePedidoUseCase;
-import br.com.ismyburguer.controlepedido.adapter.interfaces.in.RetirarControlePedidoUseCase;
 import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.core.adapter.in.WebAdapter;
 import io.swagger.v3.oas.annotations.Operation;

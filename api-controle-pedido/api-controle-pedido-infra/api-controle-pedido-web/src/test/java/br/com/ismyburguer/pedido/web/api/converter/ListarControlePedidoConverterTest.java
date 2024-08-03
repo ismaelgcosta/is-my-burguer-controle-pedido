@@ -1,15 +1,5 @@
 package br.com.ismyburguer.pedido.web.api.converter;
-import br.com.ismyburguer.controlepedido.adapter.interfaces.in.ListarControlePedidoUseCase;
-import br.com.ismyburguer.pedido.web.api.converter.ListarControlePedidoConverter;
-import br.com.ismyburguer.pedido.web.api.response.ListarControlePedidoResponse;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
-import java.util.List;
 import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.pedido.web.api.response.ListarControlePedidoResponse;
 import jakarta.validation.ConstraintViolationException;
@@ -19,7 +9,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static java.lang.Thread.sleep;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ListarControlePedidoConverterTest {
 

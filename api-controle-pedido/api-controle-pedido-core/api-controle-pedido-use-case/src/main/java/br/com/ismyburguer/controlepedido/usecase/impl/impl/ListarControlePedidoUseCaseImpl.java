@@ -1,9 +1,9 @@
 package br.com.ismyburguer.controlepedido.usecase.impl.impl;
 
-import br.com.ismyburguer.controlepedido.entity.ControlePedido;
-import br.com.ismyburguer.core.usecase.UseCase;
 import br.com.ismyburguer.controlepedido.adapter.interfaces.in.ListarControlePedidoUseCase;
+import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.controlepedido.gateway.out.ListarControlePedidoRepository;
+import br.com.ismyburguer.core.usecase.UseCase;
 
 import java.util.List;
 

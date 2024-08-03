@@ -1,12 +1,12 @@
 package br.com.ismyburguer.controlepedido.usecase.impl.impl;
 
-import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.controlepedido.adapter.interfaces.in.ConsultarControlePedidoUseCase;
 import br.com.ismyburguer.controlepedido.adapter.interfaces.in.FinalizarControlePedidoUseCase;
+import br.com.ismyburguer.controlepedido.entity.ControlePedido;
 import br.com.ismyburguer.controlepedido.gateway.out.AlterarControlePedidoRepository;
 import br.com.ismyburguer.core.usecase.UseCase;
-import br.com.ismyburguer.pedido.entity.Pedido;
 import br.com.ismyburguer.pedido.adapter.interfaces.in.AlterarStatusPedidoUseCase;
+import br.com.ismyburguer.pedido.entity.Pedido;
 
 @UseCase
 public class FinalizarControlePedidoUseCaseImpl implements FinalizarControlePedidoUseCase {
