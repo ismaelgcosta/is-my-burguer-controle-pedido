@@ -57,6 +57,7 @@ public class SecurityConfigurationTest {
         when(httpSecurity.csrf(any())).thenReturn(httpSecurity);
         when(httpSecurity.authorizeHttpRequests(any())).thenReturn(httpSecurity);
         when(httpSecurity.oauth2ResourceServer(any())).thenReturn(httpSecurity);
+        when(httpSecurity.authenticationProvider(any())).thenReturn(httpSecurity);
 
         // Act
         securityConfiguration.filterChain(httpSecurity, jwtDecoder);
