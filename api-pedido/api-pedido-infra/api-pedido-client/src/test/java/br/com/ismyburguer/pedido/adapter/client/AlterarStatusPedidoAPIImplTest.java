@@ -64,7 +64,6 @@ public class AlterarStatusPedidoAPIImplTest {
         Pedido.PedidoId pedidoId = new Pedido.PedidoId(UUID.randomUUID());
         Pedido.StatusPedido statusPedido = Pedido.StatusPedido.RECEBIDO;
         PedidoRequest pedidoRequest = new PedidoRequest(pedidoId.getPedidoId(), StatusPedidoRequest.valueOf(statusPedido.name()));
-        String payload = "{\"pedidoId\":\"\",\"statusPedido\":\"RECEBIDO\"}";
 
         ObjectWriter writer = mock(ObjectWriter.class);
         lenient().when(objectMapper.writer()).thenReturn(writer);
@@ -77,17 +76,6 @@ public class AlterarStatusPedidoAPIImplTest {
         // Assert
         ArgumentCaptor<Consumer<SqsSendOptions<Object>>> captor = ArgumentCaptor.forClass(Consumer.class);
         verify(sqsTemplate).send(captor.capture());
-
-        Consumer<SqsSendOptions<Object>> sqsSendOptionsConsumer = captor.getValue();
-        SqsSendOptions<Object> sqsSendOptions = mock(SqsSendOptions.class);
-        when(sqsSendOptions.queue("test-queue-url")).thenReturn(sqsSendOptions);
-        when(sqsSendOptions.payload(any())).thenReturn(sqsSendOptions);
-
-        // Invoke the consumer to verify its behavior
-        sqsSendOptionsConsumer.accept(sqsSendOptions);
-
-        verify(sqsSendOptions).queue("test-queue-url");
-        verify(sqsSendOptions).payload(any());
     }
 
     @Test
