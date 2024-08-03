@@ -1,11 +1,11 @@
 package br.com.ismyburguer.pedido.adapter.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoRequest {

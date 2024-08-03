@@ -76,11 +76,6 @@ public class ControlePedido implements Validation {
             return descricao;
         }
 
-        @Override
-        public String toString() {
-            return descricao;
-        }
-
         public void validarProximoStatus(StatusControlePedido statusPedido) {
             String message = "O Pedido precisa estar com o Status " + getDescricao() + " para poder ser alterado para " + statusPedido.getDescricao();
 
