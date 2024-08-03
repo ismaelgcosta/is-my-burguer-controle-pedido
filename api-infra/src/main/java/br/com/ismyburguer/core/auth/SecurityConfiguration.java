@@ -40,8 +40,8 @@ public class SecurityConfiguration {
                     authz.requestMatchers("/**").authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-                .authenticationProvider(new JwtAuthenticationProvider(jwtDecoder))
-        ;
+                .authenticationProvider(new JwtAuthenticationProvider(jwtDecoder));
+
         return http.build();
     }
 
